@@ -36,8 +36,12 @@ Look around [the target](http://photogram-final.matchthetarget.com/) and try to 
 - There is a discover page (`/users/[username]/discover`)
   - it lists the photos that are liked by the people the user is following
 
-### DELETE THESE:
+### DELETE THESE AFTER USE:
 
 rails g draft:resource photo caption:text owner_id:integer image:string likes_count:integer comments_count:integer 
 
-rails g draft:resource users email:email comments_count:integer likes_count:integer is_private:boolean username:string password:password 
+rails g draft:resource users email:string comments_count:integer likes_count:integer is_private:boolean username:string password:string
+
+rails g draft:resource likes fan_id:integer photo_id_integer
+
+rails g draft:resource comments body:text author_id:integer photo_id:integer 
