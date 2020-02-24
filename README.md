@@ -45,3 +45,5 @@ rails g draft:resource users email:string comments_count:integer likes_count:int
 rails g draft:resource likes fan_id:integer photo_id_integer
 
 rails g draft:resource comments body:text author_id:integer photo_id:integer 
+
+rails g draft:resource follow_requests status:string recipient_id:integer sender_id:integer 
