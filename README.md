@@ -39,3 +39,5 @@ Look around [the target](http://photogram-final.matchthetarget.com/) and try to 
 ### DELETE THESE:
 
 rails g draft:resource photo caption:text owner_id:integer image:string likes_count:integer comments_count:integer 
+
+rails g draft:resource users email:email comments_count:integer likes_count:integer is_private:boolean username:string password:password 
