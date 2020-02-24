@@ -4,6 +4,8 @@
 #
 #  id             :integer          not null, primary key
 #  comments_count :integer
+#  email          :email
+#  is_private     :boolean
 #  likes_count    :integer
 #  password       :string
 #  private        :boolean
