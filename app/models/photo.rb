@@ -12,4 +12,12 @@
 #  owner_id       :integer
 #
 class Photo < ApplicationRecord
+  # need import photo methods
+  # def poster
+  #   return User.where({:id => self.owner_id}).at(0)
+  # end
+
+  belongs_to(:poster, { :class_name => "User", :foreign_key => "owner_id"})
+
+  
 end

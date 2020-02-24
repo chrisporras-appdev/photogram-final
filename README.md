@@ -42,7 +42,7 @@ rails g draft:resource photo caption:text owner_id:integer image:string likes_co
 
 rails g draft:resource users email:string comments_count:integer likes_count:integer is_private:boolean username:string password:string
 
-rails g draft:resource likes fan_id:integer photo_id_integer
+rails g draft:resource likes fan_id:integer photo_id:integer
 
 rails g draft:resource comments body:text author_id:integer photo_id:integer 
 

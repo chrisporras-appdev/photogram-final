@@ -9,4 +9,13 @@
 #  fan_id           :integer
 #
 class Like < ApplicationRecord
+  
+  
+  # def fan
+  #   return User.where({:id => self.fan_id}).at(0)
+  # end
+
+  belongs_to(:fan, { :class_name => "Photo", :foreign_key => "fan_id"})
+
+  belongs_to(:photo)
 end
