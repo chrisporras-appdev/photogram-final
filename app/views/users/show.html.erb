@@ -1,7 +1,7 @@
 <div class="row mb-3">
   <div class="col-md-8 offset-md-2">
     <h1>
-      User #<%= @user.id %> details
+      <%= @user.username %> details
     </h1>
 
     <div class="row mb-3">
@@ -80,6 +80,21 @@
 
 <hr>
 
+<table>
+<%=%>
+<th>
+  <tr>
+    
+  </tr>
+
+</th>
+
+<%end%>
+</table> 
+
+
+<hr>
+
 
 <div class="row mb-3">
   <div class="col-md-8 offset-md-2">
@@ -143,3 +158,59 @@
 </div>
 
 <hr>
+
+
+<div>
+<h2>Own photos (<%= @user.own_photos.count %>)</h2>
+
+<table border="1">
+  <tr>
+    <th>
+      Image
+    </th>
+
+    <th>
+      Owner
+    </th>
+
+    <th>
+      Caption
+    </th>
+
+    <th>
+      Posted
+    </th>
+
+    <th></th>
+  </tr>
+
+  <% @user.own_photos.each do |photo| %>
+  <tr>
+    <td>
+      <img src="<%= photo.image %>">
+    </td>
+
+    <td>
+      <%= photo.poster.username %>
+    </td>
+
+    <td>
+      <%= photo.caption %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(photo.created_at) %>
+    </td>
+    
+    <td>
+      <a href="/photos/<%= photo.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+
+  <% end %>
+</table>
+
+
+</div>

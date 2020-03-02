@@ -6,8 +6,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    the_id = params.fetch("path_id")
-    @user = User.where({:id => the_id }).at(0)
+    username = params.fetch("username")
+    @user = User.where({:username => username}).at(0)
 
     render({ :template => "users/show.html.erb" })
   end
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     @user.likes_count = params.fetch("query_likes_count")
     @user.is_private = params.fetch("query_is_private", false)
     @user.username = params.fetch("query_username")
-    @user.password = params.fetch("query_password")
+    @user.password_digest = params.fetch("query_password")
 
     if @user.valid?
       @user.save
