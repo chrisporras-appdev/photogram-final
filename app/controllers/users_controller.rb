@@ -6,6 +6,8 @@ class UsersController < ApplicationController
   def user_sign_out
     reset_session
 
+    @signed_in = false
+
     redirect_to("/", {:notice => "See ya later!"})
 
   end
@@ -16,17 +18,19 @@ class UsersController < ApplicationController
   end
 
   def authenticate
-    username = params.fetch("input_username")
+    email = params.fetch("input_email")
 
     password = params.fetch("input_password")
 
-    user = User.where({:username => username}).at(0)
+    user = User.where({:email => email}).at(0)
 
     if user == nil
       redirect_to("/user_sign_in", {:alert => "No one by that name around these parts!"})
     else
       if password == user.password
         session.store(:user_id, user.id)
+
+        @signed_in = true
 
         redirect_to("/users", { :notice => "Welcome back, #{user.username}!"})
       else
