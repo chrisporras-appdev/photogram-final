@@ -47,7 +47,7 @@ class PhotosController < ApplicationController
   end
 
   def destroy
-    the_id = params.fetch("path_id")
+    the_id = params.fetch("photo_id")
     @photo = Photo.where({ :id => the_id }).at(0)
 
     @photo.destroy

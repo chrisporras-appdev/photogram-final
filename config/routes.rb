@@ -19,6 +19,13 @@ Rails.application.routes.draw do
   get("/users", { :controller => "users", :action => "index" })
   
   get("/users/:username", { :controller => "users", :action => "show" })
+
+  get("/users/:username/feed", { :controller => "users", :action => "feed" })
+
+  get("/users/:username/liked_photos", { :controller => "users", :action => "liked_photos" })
+
+  get("/users/:username/discover", { :controller => "users", :action => "discover" })
+
   
   # UPDATE
   
@@ -104,7 +111,7 @@ Rails.application.routes.draw do
   post("/modify_photo/:path_id", { :controller => "photos", :action => "update" })
   
   # DELETE
-  get("/delete_photo/:path_id", { :controller => "photos", :action => "destroy" })
+  get("/delete_photo/:photo_id", { :controller => "photos", :action => "destroy" })
 
   #------------------------------
 

@@ -1,4 +1,26 @@
 class UsersController < ApplicationController
+
+  def discover
+    username = params.fetch("username")
+    @user = User.where({:username => username}).at(0)
+    
+    render({:template => "/users/discover.html.erb"})
+  end
+
+  def feed
+    username = params.fetch("username")
+    @user = User.where({:username => username}).at(0)
+    
+    render({:template => "/users/feed.html.erb"})
+  end
+
+  def liked_photos
+    username = params.fetch("username")
+    @user = User.where({:username => username}).at(0)
+    
+    render({:template => "/users/liked_photos.html.erb"})
+  end
+
   def new_registration_form
     render({:template => "/users/signup_form.html.erb"})
   end

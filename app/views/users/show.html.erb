@@ -81,14 +81,32 @@
 <hr>
 
 <table>
-<% @user.sent_follow_requests.each do |sent|%>
-<th>
-  <tr>
-    <%=sent.recipient.username%>
-  </tr>
-</th>
 
+<tr>
+<th>
+  Pending sent requests
+</th>
+</tr>
+
+<% @user.pending_sent_follow_requests.each do |sent|%>
+<tr>
+  <td>
+    <%=sent.recipient.username%>
+  </td>
 <%end%>
+<tr>
+<th>
+  Pending recieved requests
+</th>
+</tr>
+
+<% @user.pending_received_follow_requests.each do |rec|%>
+  <td>
+    <%=rec.sender.username%>
+  </td>
+</tr>
+<%end%>
+
 </table> 
 
 
@@ -181,6 +199,11 @@
     </th>
 
     <th></th>
+
+    <th>      
+    <div>
+     Delete?
+    </th>
   </tr>
 
   <% @user.own_photos.each do |photo| %>
@@ -205,6 +228,13 @@
       <a href="/photos/<%= photo.id %>">
         Show details
       </a>
+    </td>
+    <td>   
+    <div>
+      <a href="/delete_photo/<%= photo.id %>" class="btn btn-block btn-outline-secondary">
+          Delete photo
+        </a>
+      </div>
     </td>
   </tr>
 

@@ -15,7 +15,7 @@ class LikesController < ApplicationController
   def create
     @like = Like.new
     @like.fan_id = params.fetch("query_fan_id")
-    @like.photo_id_integer = params.fetch("query_photo_id_integer")
+    @like.photo_id = params.fetch("query_photo_id")
 
     if @like.valid?
       @like.save
