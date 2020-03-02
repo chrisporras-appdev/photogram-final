@@ -9,6 +9,8 @@ class PhotosController < ApplicationController
     the_id = params.fetch("path_id")
     @photo = Photo.where({:id => the_id }).at(0)
 
+    @user = User.where({:id => @photo.owner_id}).at(0)
+
     render({ :template => "photos/show.html.erb" })
   end
 
