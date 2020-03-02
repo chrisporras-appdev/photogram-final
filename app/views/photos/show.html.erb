@@ -143,3 +143,15 @@
 <form action="/unlike_photo/<%= @photo.id %>"  method="post" >
 <button> Unlike </button>
 </form>
+
+<hr>
+
+<form action="/add_comment/<%= @photo.id %>"  method="post" >
+<label for="Comment">
+Comment
+</label>
+
+<textarea id="Comment" name="Comment" alt="Comment"></textarea>
+
+<button> Add comment </button>
+</form>

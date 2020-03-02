@@ -114,7 +114,7 @@ Rails.application.routes.draw do
 
   post("/unlike_photo/:path_id", { :controller => "photos", :action => "unlike" })
 
-  # post("/comment_photo/:path_id", { :controller => "photos", :action => "update" })
+  post("/add_comment/:path_id", { :controller => "photos", :action => "comment" })
 
   # DELETE
   get("/delete_photo/:photo_id", { :controller => "photos", :action => "destroy" })

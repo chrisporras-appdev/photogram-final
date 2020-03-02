@@ -103,6 +103,25 @@ class PhotosController < ApplicationController
     end
   end
 
+  def comment
+    user_id = session.fetch(:user_id)
+
+    the_id = params.fetch("path_id")
+    @photo = Photo.where({ :id => the_id }).at(0)
+
+    @comment = Comment.new
+    @comment.body = params.fetch("Comment")
+    @comment.author_id = user_id
+    @comment.photo_id = @photo.id
+
+    if @comment.valid?
+      @comment.save
+      redirect_to("/photos/#{@photo.id}", { :notice => "Photo updated successfully."} )
+    else
+      redirect_to("/photos/#{@photo.id}", { :alert => "Photo failed to update successfully." })
+    end
+  end
+
 
 
 end
