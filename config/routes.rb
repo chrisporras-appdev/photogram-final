@@ -109,7 +109,13 @@ Rails.application.routes.draw do
   # UPDATE
   
   post("/modify_photo/:path_id", { :controller => "photos", :action => "update" })
-  
+
+  post("/like_photo/:path_id", { :controller => "photos", :action => "like" })
+
+  post("/unlike_photo/:path_id", { :controller => "photos", :action => "unlike" })
+
+  # post("/comment_photo/:path_id", { :controller => "photos", :action => "update" })
+
   # DELETE
   get("/delete_photo/:photo_id", { :controller => "photos", :action => "destroy" })
 

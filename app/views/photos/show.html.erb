@@ -133,3 +133,13 @@
 </div>
 
 <hr>
+
+<h2>Like/unlike</h2>
+
+<form action="/like_photo/<%= @photo.id %>"  method="post" >
+<button> Like </button>
+</form>
+
+<form action="/unlike_photo/<%= @photo.id %>"  method="post" >
+<button> Unlike </button>
+</form>

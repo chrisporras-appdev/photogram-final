@@ -56,4 +56,53 @@ class PhotosController < ApplicationController
 
     redirect_to("/photos", { :notice => "Photo deleted successfully."} )
   end
+
+  def like
+
+    the_id = params.fetch("path_id")
+    @photo = Photo.where({ :id => the_id }).at(0)
+
+
+    @photo.likes_count = @photo.likes_count + 1
+
+    @like = Like.new
+    @like.fan_id = 0
+    @like.photo_id = @photo.id
+    
+    if @like.valid?
+      @like.save
+    end
+
+    if @photo.valid?
+      @photo.save
+      redirect_to("/photos/#{@photo.id}", { :notice => "Photo updated successfully."} )
+    else
+      redirect_to("/photos/#{@photo.id}", { :alert => "Photo failed to update successfully." })
+    end
+  end
+
+  def unlike
+    user_id = session.fetch(:user_id)
+
+    the_id = params.fetch("path_id")
+    @photo = Photo.where({ :id => the_id }).at(0)
+
+
+    @photo.likes_count = @photo.likes_count - 1
+
+    @like = Like.where({ :photo_id => @photo.id }).at(0)
+
+    @like.destroy
+
+
+    if @photo.valid?
+      @photo.save
+      redirect_to("/photos/#{@photo.id}", { :notice => "Photo updated successfully."} )
+    else
+      redirect_to("/photos/#{@photo.id}", { :alert => "Photo failed to update successfully." })
+    end
+  end
+
+
+
 end
