@@ -81,12 +81,11 @@
 <hr>
 
 <table>
-<%=%>
+<% @user.sent_follow_requests.each do |sent|%>
 <th>
   <tr>
-    
+    <%=sent.recipient.username%>
   </tr>
-
 </th>
 
 <%end%>

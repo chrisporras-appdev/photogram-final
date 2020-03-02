@@ -1,4 +1,43 @@
 class UsersController < ApplicationController
+  def new_registration_form
+    render({:template => "/users/signup_form.html.erb"})
+  end
+
+  def user_sign_out
+    reset_session
+
+    redirect_to("/", {:notice => "See ya later!"})
+
+  end
+
+  def user_sign_in
+
+    render({:template => "/users/signin_form.html.erb"})
+  end
+
+  def authenticate
+    username = params.fetch("input_username")
+
+    password = params.fetch("input_password")
+
+    user = User.where({:username => username}).at(0)
+
+    if user == nil
+      redirect_to("/user_sign_in", {:alert => "No one by that name around these parts!"})
+    else
+      if password == user.password
+        session.store(:user_id, user.id)
+
+        redirect_to("/users", { :notice => "Welcome back, #{user.username}!"})
+      else
+        redirect_to("/user_sign_in", {:alert => "Incorrect password"})
+      
+      end
+    end
+  end
+  
+  
+  
   def index
     @users = User.all.order({ :created_at => :desc })
 
@@ -19,7 +58,7 @@ class UsersController < ApplicationController
     @user.likes_count = params.fetch("query_likes_count")
     @user.is_private = params.fetch("query_is_private", false)
     @user.username = params.fetch("query_username")
-    @user.password_digest = params.fetch("query_password")
+    @user.password = params.fetch("query_password")
 
     if @user.valid?
       @user.save
